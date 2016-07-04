@@ -1,0 +1,15 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'board/style.css' %}" />
+
+{% if latest_thread_list %}
+    <ul>
+    {% for thread in latest_thread_list %}
+        <li><a href="{% url 'board:detail' thread.id %}">{{ thread.thread_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No threads are available.</p>
+{% endif %}
+
+<a class="btn btn-default" href="{% url 'board:addthread' %}">Add thread</a>
