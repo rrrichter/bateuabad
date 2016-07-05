@@ -17,19 +17,13 @@ class IndexView(generic.ListView):
 		published in the future).
 		"""
 		return Thread.objects.filter(
-			pub_date__lte=timezone.now()
-		).order_by('-pub_date')[:5]
+			pubDate__lte=timezone.now()
+		).order_by('-pubDate')[:5]
 
 
 class DetailView(generic.DetailView):
 	model = Thread
 	template_name = 'board/detail.html'
-
-	def get_queryset(self):
-		"""
-		Excludes any Threads that aren't published yet.
-		"""
-		return Thread.objects.filter(pub_date__lte=timezone.now())
 
 def addcomment(request, pk):
 	thread = get_object_or_404(Thread, pk=pk)
@@ -40,7 +34,7 @@ def addcomment(request, pk):
 		if form.is_valid():
 			comment = form.save(commit=False)
 			comment.thread = thread
-			comment.pub_date = timezone.now()
+			comment.pubDate = timezone.now()
 			comment.save()
 
 			return redirect('board:detail', pk=thread.pk)
@@ -56,7 +50,7 @@ def addthread(request):
 
 		if form.is_valid():
 			thread = form.save(commit=False)
-			thread.pub_date = timezone.now()
+			thread.pubDate = timezone.now()
 			thread.save()
 
 			return redirect('board:detail', pk=thread.pk)

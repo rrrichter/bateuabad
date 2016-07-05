@@ -4,9 +4,9 @@ from .models import Comment, Thread
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('author', 'comment_text',)
+        fields = ('author', 'text',)
 
 class ThreadForm(forms.ModelForm):
     class Meta:
         model = Thread
-        fields = ('thread_title', 'thread_text',)
+        fields = ('title', 'text',)

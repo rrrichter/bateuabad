@@ -5,23 +5,23 @@ from django.db import models
 from django.utils import timezone
 
 class Thread(models.Model):
-	thread_title = models.CharField(max_length=80, blank=True, default='')
-	thread_text = models.CharField(max_length=2000)
-	pub_date = models.DateTimeField('date published')
+	title = models.CharField(max_length=80, blank=True, default='')
+	text = models.TextField(max_length=2000)
+	pubDate = models.DateTimeField('date published')
 
 	def __str__(self):
-		return self.thread_text
+		return self.text
 
 	def was_published_recently(self):
 		now = timezone.now()
-		return now - datetime.timedelta(days=1) <= self.pub_date <= now
+		return now - datetime.timedelta(days=1) <= self.pubDate <= now
 
 
 class Comment(models.Model):
 	thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
 	author = models.CharField(max_length=25, blank=True, default='')
-	comment_text = models.CharField(max_length=2000)
-	pub_date = models.DateTimeField('date published')
+	text = models.TextField(max_length=2000)
+	pubDate = models.DateTimeField('date published')
 
 	def __str__(self):
-		return self.comment_text
+		return self.text

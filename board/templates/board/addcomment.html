@@ -1,7 +1,53 @@
-{% block content %}
-    <h1>New comment</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Send</button>
-    </form>
-{% endblock %}
+{% include "bateuabad/header.html" %}
+{% load staticfiles %}
+<img src="{% static 'bateuabad/images/bg_large.png' %}" id="background">
+	
+<style>
+	.list-group-item {
+		background-color: 
+	}
+	label {
+		font-size:18px;
+		text-align:left;
+		font-weight: lighter;
+	}
+	#id_text {
+	    height: 100px;
+	    width: 300px;
+	    max-width:420px;
+	}
+
+	#id_author {
+		height:30px;
+		width:300px;
+	}
+</style>
+
+<div class="row">
+	<div class="col-md-4 col-md-offset-4 col-xs-12">
+		<h1 style="color:white;">Novo Comentário</h1>
+		<form method="POST" class="post-form">{% csrf_token %}
+			<ul class="list-group">
+    			<li class="list-group-item">
+    			
+    				<div>
+        				{{ form.non_field_errors }}
+						<div class="fieldWrapper">
+						    {{ form.author.errors }}
+						    <label for="{{ form.author.id_for_label }}">Autor</label><br>
+						    <div align="center">{{ form.author }}</div>
+						</div>
+						<div class="fieldWrapper">
+						    {{ form.text.errors }}
+						    <label for="{{ form.text.id_for_label }}">Mensagem</label><br>
+						    <div align="center">{{ form.text }}</div>
+						</div>
+        			</div><br>
+        		</li>
+        	</ul>
+        	<button type="submit" class="save btn btn-primary raised">Enviar Comentário</button>
+    	</form>
+	</div>
+</div>
+
+{% include "bateuabad/footer.html" %}
