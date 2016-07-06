@@ -9,7 +9,7 @@
     z-index: -100;
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    background: url(polina.jpg) no-repeat;
+    background: url(bg_large.png) no-repeat;
     background-size: cover;
 }
 .container h1 {
