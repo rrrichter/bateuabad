@@ -25,13 +25,12 @@ LOCAL_DATABASES = {
     }
 }
 
-if 'ISINHEROKU' not in os.environ:
-    from secrets_settings import *
 
+DEBUG = True
 if 'ISINHEROKU' in os.environ:
     DEBUG = False
 else:
-    DEBUG = True
+    from secrets_settings import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
