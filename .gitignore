@@ -90,3 +90,4 @@ ENV/
 
 *.pyc
 bateuabad/staticfiles
+bateuabad/secrets_settings.py

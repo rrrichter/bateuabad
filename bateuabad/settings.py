@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from secrets_settings import *
+
+DEBUG = True
+if 'ISINHEROKU' in os.environ:
+    DEBUG = False
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,10 +26,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'q2mj&!3&-dzs$1q^-98@62tb$1o_ns0@f4rz=#!77@kv3u)=o7'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if 'ISINHEROKU' in os.environ:
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+else:
+    SECRET_KEY = LOCAL_SECRET_KEY
 
 ALLOWED_HOSTS = ['*']
 
@@ -77,17 +83,19 @@ WSGI_APPLICATION = 'bateuabad.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bateuabad',
-        'USER': 'postgres',
-        'PASSWORD': '01029595',
-        'HOST': 'localhost',
-        'PORT': 5432,
+if 'ISINHEROKU' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': 'localhost',
+            'PORT': 5432,
+        }
     }
-}
+else:
+    DATABASES = LOCAL_DATABASES
 
 # Update database configuration with $DATABASE_URL.
 import dj_database_url
