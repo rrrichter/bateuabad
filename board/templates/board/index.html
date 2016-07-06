@@ -4,7 +4,7 @@
 <img src="{% static 'bateuabad/images/bg_large.png' %}" id="background">
 	<div class="row">
 	<div class="col-md-8 col-md-offset-2">
-        <h1 style="color:white;">Lista de Posts</h1>
+        <h1 style="color:white;">Forum</h1>
 {% if latest_thread_list %}
 	
 	<div style="color:white;text-align:left" class="list-group">
@@ -29,7 +29,7 @@
 {% endif %}
 
 <a class="btn btn-primary raised" href="{% url 'board:addthread' %}">Nova Postagem</a>
-
+<br><br>
 
 </div>
 </div>

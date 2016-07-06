@@ -27,14 +27,14 @@
 
 			{% empty %}
 			<li class="list-group-item">
-    			<p>Nenhum comentário ainda :(</p>
+    			<p>Nenhum comentario ainda :(</p>
     		</li>
 			{% endfor %}
 			{% if error_message %}<li class="list-group-item"><p><strong>{{ error_message }}</strong></p></li>{% endif %}
 		</ul>
 
 		<a class="btn btn-primary raised" href="{% url 'board:addcomment' pk=thread.pk %}">Novo Comentário</a>
-		<br>
+		<br><br>
 
 	</div>
 </div>
