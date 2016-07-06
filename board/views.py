@@ -18,7 +18,7 @@ class IndexView(generic.ListView):
 		"""
 		return Thread.objects.filter(
 			pubDate__lte=timezone.now()
-		).order_by('-pubDate')"""[:5]"""
+		).order_by('-pubDate')
 
 
 class DetailView(generic.DetailView):
