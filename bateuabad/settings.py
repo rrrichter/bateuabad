@@ -11,12 +11,26 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-from secrets_settings import *
+
+LOCAL_SECRET_KEY = 'dummy'
+
+LOCAL_DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dummy',
+        'USER': 'dummy',
+        'PASSWORD': 'dummy',
+        'HOST': 'localhost',
+        'PORT': 5432,
+    }
+}
+
 
 DEBUG = True
 if 'ISINHEROKU' in os.environ:
     DEBUG = False
-
+else:
+    from secrets_settings import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,6 +41,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 if 'ISINHEROKU' in os.environ:
+
     SECRET_KEY = os.environ.get('SECRET_KEY')
 else:
     SECRET_KEY = LOCAL_SECRET_KEY
