@@ -36,14 +36,10 @@ a {
     font-family: 'Lato', sans-serif;
     font-weight: bold;
     font-size: 17px;
-    font-color: white;
-}
-
-a {
     color: darkgrey;
 }
 
-a:hover {
+a:hover, a:active {
     color: white;
 }
 
