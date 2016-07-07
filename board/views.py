@@ -41,7 +41,7 @@ def addcomment(request, pk):
 	else:
 		form = CommentForm()
 
-	return render(request, 'board/addcomment.html', {'form': form})
+	return render(request, 'board/addcomment.html', {'form': form, 'pk': pk})
 
 def addthread(request):
 

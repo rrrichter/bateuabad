@@ -34,7 +34,7 @@
         				{{ form.non_field_errors }}
 						<div class="fieldWrapper">
 						    {{ form.author.errors }}
-						    <label for="{{ form.author.id_for_label }}">Autor</label> (opcional)<br>
+						    <label for="{{ form.author.id_for_label }}">Autor</label> <br>
 						    <div align="center">{{ form.author }}</div>
 						</div>
 						<div class="fieldWrapper">
@@ -45,7 +45,8 @@
         			</div><br>
         		</li>
         	</ul>
-        	<button type="submit" class="save btn btn-primary raised">Enviar Comentário</button>
+        	<button type="submit" class="save btn btn-primary raised">Comentar</button>
+			<a class="btn btn-primary raised" href="{% url 'board:detail' pk %}">Voltar</a>
     	</form>
 	</div>
 </div>
