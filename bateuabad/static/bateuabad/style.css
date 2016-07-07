@@ -21,10 +21,6 @@ html {
     color: white;
 }
 
-.container {
-    min-height:100%;
-   position:relative;
-}
 
 h1, h2 {
     font-size: 150%;
